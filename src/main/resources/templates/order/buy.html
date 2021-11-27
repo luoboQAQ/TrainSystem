@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>开始订票 - 高铁订票系统</title>
+    <link rel="stylesheet" th:href="@{/css/backend.css}">
+    <style th:inline="css">
+        .wrapper{
+            background: url([[@{/image/bg.png}]]) fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div th:replace="commons/commons::topbar"></div>
+    <div th:replace="commons/commons::sidebar"></div>
+    <div class="content-page">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between">
+                            <div class="header-title">
+                                <h4 class="card-title">
+                                    开始订票
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table" style="text-align:center;">
+                                <thead>
+                                <tr class="ligth">
+                                    <th scope="col">列车编号</th>
+                                    <th scope="col">始发城市</th>
+                                    <th scope="col">到达城市</th>
+                                    <th scope="col">始发时间</th>
+                                    <th scope="col">到达时间</th>
+                                    <th scope="col">价格</th>
+                                    <th scope="col">剩余票数</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="col" th:text="${trainDTO.id}"></th>
+                                    <th scope="col" th:text="${trainDTO.startCityName}"></th>
+                                    <th scope="col" th:text="${trainDTO.arriveCityName}"></th>
+                                    <th scope="col" th:text="${#dates.format(trainDTO.startTime,'yyyy-MM-dd HH:mm:ss')}"></th>
+                                    <th scope="col" th:text="${#dates.format(trainDTO.arriveTime,'yyyy-MM-dd HH:mm:ss')}"></th>
+                                    <th scope="col" th:text="${trainDTO.price}"></th>
+                                    <th scope="col" th:text="${trainDTO.number}"></th>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <p class="bg-primary-light pl-3 pr-3 pt-2 pb-2 rounded" th:if="${hasOrder}">
+                                提示：您之前已订过票，个人信息已锁定，如需修改请先退票!
+                            </p>
+                            <form th:action="@{/buy}" method="post">
+                                <input name="hasOrder" th:value="${hasOrder}" style="display: none;">
+                                <input name="userId" th:value="${session.userId}" style="display: none;">
+                                <input name="trainId" th:value="${trainDTO.id}" style="display: none;">
+                                <div class="form-group">
+                                    <label for="realName">真实姓名</label>
+                                    <input id="realName" name="realName" required th:value="${user.realName}" th:readonly="${hasOrder}" class="form-control" type="text" placeholder="请输入真实姓名">
+                                </div>
+                                <div class="form-group">
+                                    <label for="idCard">身份证号</label>
+                                    <input id="idCard" name="idCard" required th:value="${user.idCard}" th:readonly="${hasOrder}" class="form-control" type="text" placeholder="请输入身份证号">
+                                </div>
+                                <div class="form-group">
+                                    <label for="sex">性别 </label>
+                                    <div id="sex">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input id="sex1" class="custom-control-input" type="radio"
+                                                   name="sex" value="男" th:checked="${user.sex == '男'}" th:disabled="${hasOrder}">
+                                            <label class="custom-control-label" for="sex1">男</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input id="sex2" class="custom-control-input" type="radio"
+                                                   name="sex" value="女" th:checked="${user.sex == '女' or user.sex == null}" th:disabled="${hasOrder}">
+                                            <label class="custom-control-label" for="sex2">女</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="number">订票张数</label>
+                                    <input id="number" name="number" value="1" class="form-control" type="number" min="1" placeholder="请输入张数">
+                                </div>
+                                <p th:text="${msg}" style="color:red;"></p>
+                                <button class="btn btn-primary" type="submit">提交</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="commons/commons::footer"></div>
+</div>
+<script th:src="@{/js/backend-bundle.min.js}"></script>
+</body>
+</html>

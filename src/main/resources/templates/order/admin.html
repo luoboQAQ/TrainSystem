@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>销售额查询 - 高铁订票系统</title>
+    <link rel="stylesheet" th:href="@{/css/backend.css}">
+    <style th:inline="css">
+        .wrapper{
+            background: url([[@{/image/bg.png}]]) fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div th:replace="commons/commons::topbar"></div>
+    <div th:replace="commons/commons::sidebar"></div>
+    <div class="content-page">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between">
+                            <div class="header-title">
+                                <h4 class="card-title">
+                                    销售额查询
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table" style="text-align:center;">
+                                <thead>
+                                <tr class="ligth">
+                                    <th scope="col">列车编号</th>
+                                    <th scope="col">票价</th>
+                                    <th scope="col">售出数</th>
+                                    <th scope="col">售出金额</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="sum : ${sumList}">
+                                    <th scope="col" th:text="${sum.trainId}"></th>
+                                    <th scope="col" th:text="${sum.price}"></th>
+                                    <th scope="col" th:text="${sum.number}"></th>
+                                    <th scope="col" th:text="${sum.price*sum.number}"></th>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="commons/commons::footer"></div>
+</div>
+<script th:src="@{/js/backend-bundle.min.js}"></script>
+</body>
+</html>

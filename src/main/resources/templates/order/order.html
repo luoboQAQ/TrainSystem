@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>订单管理 - 高铁订票系统</title>
+    <link rel="stylesheet" th:href="@{/css/backend.css}">
+    <style th:inline="css">
+        .wrapper{
+            background: url([[@{/image/bg.png}]]) fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div th:replace="commons/commons::topbar"></div>
+    <div th:replace="commons/commons::sidebar"></div>
+    <div class="content-page">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between">
+                            <div class="header-title">
+                                <h4 class="card-title">
+                                    订单查询
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table" style="text-align:center;">
+                                <thead>
+                                <tr class="ligth">
+                                    <th scope="col">订单编号</th>
+                                    <th scope="col">下单时间</th>
+                                    <th scope="col">订票数目</th>
+                                    <th scope="col">订票车次</th>
+                                    <th scope="col">发车时间</th>
+                                    <th scope="col">操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="order : ${orderList}">
+                                    <th scope="col" th:text="${order.id}"></th>
+                                    <th scope="col" th:text="${#dates.format(order.time,'yyyy-MM-dd HH:mm:ss')}"></th>
+                                    <th scope="col" th:text="${order.number}"></th>
+                                    <th scope="col" th:text="${order.trainId}"></th>
+                                    <th scope="col" th:text="${#dates.format(order.startTime,'yyyy-MM-dd HH:mm:ss')}"></th>
+                                    <th scope="col">
+                                        <a class="btn btn-outline-primary" th:href="@{/ticket(id=${order.id})}">打印车票</a>
+                                        <a class="btn btn-outline-secondary" th:href="@{/rebuy(id=${order.id})}">退票</a>
+                                    </th>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="commons/commons::footer"></div>
+</div>
+<script th:src="@{js/backend-bundle.min.js}"></script>
+</body>
+</html>

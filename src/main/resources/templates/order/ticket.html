@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>高铁票 - 高铁订票系统</title>
+    <link rel="stylesheet" th:href="@{/css/backend.css}">
+    <style th:inline="css">
+        .wrapper{
+            background: url([[@{/image/bg.png}]]) fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div th:replace="commons/commons::topbar"></div>
+    <div th:replace="commons/commons::sidebar"></div>
+    <div class="content-page">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between">
+                            <div class="header-title">
+                                <h4 class="card-title">
+                                    车票打印
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    订单号：[[${order.id}]]
+                                </li>
+                                <li class="list-group-item">
+                                    姓名：[[${user.realName}]]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;身份证号：[[${user.idCard}]]
+                                </li>
+                                <li class="list-group-item">
+                                    车次号：[[${trainDTO.id}]]
+                                </li>
+                                <li class="list-group-item">
+                                    地点：[[${trainDTO.startCityName}]]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开往&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[[${trainDTO.arriveCityName}]]
+                                </li>
+                                <li class="list-group-item">
+                                    时间：[[${#dates.format(trainDTO.startTime,'yyyy-MM-dd HH:mm:ss')}]]&nbsp;&nbsp;--&nbsp;&nbsp;[[${#dates.format(trainDTO.arriveTime,'yyyy-MM-dd HH:mm:ss')}]]
+                                </li>
+                                <li class="list-group-item">
+                                    票价：[[${trainDTO.price}]]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;张数：[[${order.number}]]
+                                </li>
+                            </ul>
+                            <br/><br/>
+                            <div class="row justify-content-md-center">
+                                <a class="btn btn-primary" th:href="@{/main.html}">返回首页</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="commons/commons::footer"></div>
+</div>
+<script th:src="@{js/backend-bundle.min.js}"></script>
+</body>
+</html>

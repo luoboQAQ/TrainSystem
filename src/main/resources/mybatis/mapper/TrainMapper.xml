@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.lbqaq.mapper.TrainMapper">
+  <resultMap id="BaseResultMap" type="top.lbqaq.model.Train">
+    <!--@mbg.generated-->
+    <!--@Table train-->
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="price" jdbcType="BIGINT" property="price" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="arrive_time" jdbcType="TIMESTAMP" property="arriveTime" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="arrive_city" jdbcType="BIGINT" property="arriveCity" />
+    <result column="start_city" jdbcType="BIGINT" property="startCity" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, price, `number`, arrive_time, start_time, arrive_city, start_city
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from train
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from train
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="top.lbqaq.model.Train" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into train (id,price, `number`, arrive_time,
+      start_time, arrive_city, start_city
+      )
+    values (#{id},#{price,jdbcType=BIGINT}, #{number,jdbcType=INTEGER}, #{arriveTime,jdbcType=TIMESTAMP},
+      #{startTime,jdbcType=TIMESTAMP}, #{arriveCity,jdbcType=BIGINT}, #{startCity,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="top.lbqaq.model.Train" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into train
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="number != null">
+        `number`,
+      </if>
+      <if test="arriveTime != null">
+        arrive_time,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="arriveCity != null">
+        arrive_city,
+      </if>
+      <if test="startCity != null">
+        start_city,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=BIGINT},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="arriveTime != null">
+        #{arriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arriveCity != null">
+        #{arriveCity,jdbcType=BIGINT},
+      </if>
+      <if test="startCity != null">
+        #{startCity,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.lbqaq.model.Train">
+    <!--@mbg.generated-->
+    update train
+    <set>
+      <if test="price != null">
+        price = #{price,jdbcType=BIGINT},
+      </if>
+      <if test="number != null">
+        `number` = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="arriveTime != null">
+        arrive_time = #{arriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arriveCity != null">
+        arrive_city = #{arriveCity,jdbcType=BIGINT},
+      </if>
+      <if test="startCity != null">
+        start_city = #{startCity,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.lbqaq.model.Train">
+    <!--@mbg.generated-->
+    update train
+    set price = #{price,jdbcType=BIGINT},
+      `number` = #{number,jdbcType=INTEGER},
+      arrive_time = #{arriveTime,jdbcType=TIMESTAMP},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      arrive_city = #{arriveCity,jdbcType=BIGINT},
+      start_city = #{startCity,jdbcType=BIGINT}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <select id="selectByAll" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List" />
+        from train
+        <where>
+            <if test="id != null">
+                and id=#{id,jdbcType=CHAR}
+            </if>
+            <if test="price != null">
+                and price=#{price,jdbcType=BIGINT}
+            </if>
+            <if test="number != null">
+                and `number`=#{number,jdbcType=INTEGER}
+            </if>
+            <if test="arriveTime != null">
+                and arrive_time=#{arriveTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="startTime != null">
+                and start_time=#{startTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="arriveCity != null">
+                and arrive_city=#{arriveCity,jdbcType=BIGINT}
+            </if>
+            <if test="startCity != null">
+                and start_city=#{startCity,jdbcType=BIGINT}
+            </if>
+        </where>
+    </select>
+
+  <select id="selectAllDto" resultType="TrainDTO">
+    select * from train_view
+  </select>
+
+  <select id="selectDtoById" parameterType="String" resultType="TrainDTO">
+    select * from train_view where id = #{id}
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select * from train
+  </select>
+</mapper>

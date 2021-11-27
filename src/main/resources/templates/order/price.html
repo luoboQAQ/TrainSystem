@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>交易成功 - 高铁订票系统</title>
+    <link rel="stylesheet" th:href="@{/css/backend.css}">
+    <style th:inline="css">
+        .wrapper{
+            background: url([[@{/image/bg.png}]]) fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div th:replace="commons/commons::topbar"></div>
+    <div th:replace="commons/commons::sidebar"></div>
+    <div class="content-page">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between">
+                            <div class="header-title">
+                                <h4 class="card-title">
+                                    账单
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert bg-white alert-info" role="alert">
+                                <div class="iq-alert-text">
+                                    您已成功订票！
+                                </div>
+                            </div>
+                            <div class="list-group">
+                                <div class="list-group-item list-group-item-info">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">订单号：[[${order.id}]]</h5>
+                                        <small class="text-muted" th:text="${#dates.format(time,'yyyy-MM-dd')}">2021-11-15</small>
+                                    </div>
+                                    <div class="justify-content-md-center row">
+                                        <table class="col-6">
+                                            <tr>
+                                                <th>列车号:</th><th th:text="${order.trainId}">D101</th>
+                                                <th>订购人：</th><th th:text="${name==null ? session.realName : name}">晚晚</th>
+                                            </tr>
+                                            <tr>
+                                                <th>票数:</th><th th:text="${order.number}">100</th>
+                                                <th>总价：</th><th th:text="${price}">11111</th>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/><br/>
+                            <div class="row justify-content-md-center">
+                                <a class="btn btn-primary" th:href="@{/main.html}">返回首页</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="commons/commons::footer"></div>
+</div>
+<script th:src="@{js/backend-bundle.min.js}"></script>
+</body>
+</html>

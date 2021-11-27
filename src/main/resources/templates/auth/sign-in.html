@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>登录 - 高铁订票系统</title>
+    <link rel="stylesheet" th:href="@{/css/backend.css}">
+    <style th:inline="css">
+        .wrapper{
+            background: url([[@{/image/background.png}]]) fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <section class="login-content">
+            <div class="container">
+                <div class="row align-items-center justify-content-center height-self-center">
+                    <div class="col-lg-8">
+                        <div class="card auth-card" style="overflow: inherit;border: 0px;">
+                            <div class="card-body p-0">
+                                <div class="d-flex  auth-content">
+                                    <div class="col-lg-6  content-left"
+                                        style="background-color: white;border-radius: 8px 0px 0px 8px;">
+                                        <div class="p-3 ">
+                                            <div>
+                                                <h2 class="mb-2 text-primary"  >登录</h2>
+                                                <p>欢迎登录本系统。</p>
+                                                <!-- <p>これは別の世界への扉です</p> -->
+                                                <p th:text="${msg}" style="color: red;"></p>
+                                            </div>
+                                            <form th:action="@{/auth/login}" method="post">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="floating-label form-group">
+                                                            <input
+                                                                class="floating-input form-control" type="text"
+                                                                placeholder=" "
+                                                                name="username"
+                                                                required
+                                                                style="border-color:#f3f3f3">
+                                                            <label>账号</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="floating-label form-group">
+                                                            <input
+                                                                class="floating-input form-control" type="password"
+                                                                placeholder=" "
+                                                                name="password"
+                                                                required
+                                                                style="border-color:#f3f3f3">
+                                                            <label>密码</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="custom-control custom-checkbox mb-3">
+                                                            <input
+                                                                type="checkbox" class="custom-control-input"
+                                                                id="customCheck1">
+                                                            <label
+                                                                class="custom-control-label control-label-1 "
+                                                                for="customCheck1">记住账号</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <a th:href="@{/sign-up}" class="float-right">注册</a>
+                                                    </div>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary marlene-btn-login btn-block" style="border: 0px;font-size: 1.4rem;border-radius: 1.25rem;">登录</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 content-right"><img th:src="@{/picture/luoxiqi.png}"
+                                        class="img-fluid image-right" alt="" style="margin-top: -3.5rem;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div><!-- Backend Bundle JavaScript --><!---->
+
+    <script th:src="@{js/backend-bundle.min.js}"></script><!-- Table Treeview JavaScript -->
+</body>
+
+</html>

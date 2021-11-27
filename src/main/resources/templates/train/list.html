@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>车次查询 - 高铁订票系统</title>
+    <link rel="stylesheet" th:href="@{/css/backend.css}">
+    <style th:inline="css">
+        .wrapper{
+            background: url([[@{/image/bg.png}]]) fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div th:replace="commons/commons::topbar"></div>
+    <div th:replace="commons/commons::sidebar"></div>
+    <div class="content-page">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between">
+                            <div class="header-title">
+                                <h4 class="card-title">
+                                    车次查询
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table" style="text-align:center;">
+                                <thead>
+                                    <tr class="ligth">
+                                        <th scope="col">列车编号</th>
+                                        <th scope="col">始发城市</th>
+                                        <th scope="col">到达城市</th>
+                                        <th scope="col">始发时间</th>
+                                        <th scope="col">到达时间</th>
+                                        <th scope="col">价格</th>
+                                        <th scope="col">剩余票数</th>
+                                        <th scope="col">操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="train : ${trainList}">
+                                        <th scope="col" th:text="${train.id}"></th>
+                                        <th scope="col" th:text="${train.startCityName}"></th>
+                                        <th scope="col" th:text="${train.arriveCityName}"></th>
+                                        <th scope="col" th:text="${#dates.format(train.startTime,'yyyy-MM-dd HH:mm:ss')}"></th>
+                                        <th scope="col" th:text="${#dates.format(train.arriveTime,'yyyy-MM-dd HH:mm:ss')}"></th>
+                                        <th scope="col" th:text="${train.price}"></th>
+                                        <th scope="col" th:text="${train.number}"></th>
+                                        <th scope="col">
+                                            <a class="btn btn-outline-primary" type="button" th:href="@{/buy(id=${train.id})}">订票</a>
+                                        </th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="commons/commons::footer"></div>
+</div>
+<script th:src="@{js/backend-bundle.min.js}"></script>
+</body>
+</html>

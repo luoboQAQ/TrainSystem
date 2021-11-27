@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>结果页 - 高铁订票系统</title>
+    <link rel="stylesheet" th:href="@{/css/backend.css}">
+</head>
+<body>
+<div class="wrapper"
+     style="
+        background: url(image/bg.png) fixed;
+        background-size: cover;
+      "
+>
+    <div th:replace="commons/commons::topbar"></div>
+    <div th:replace="commons/commons::sidebar"></div>
+    <div class="content-page">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between">
+                            <div class="header-title">
+                                <h4 class="card-title">
+                                    结果页
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p style="color: red" th:text="${msg}"></p>
+                            <div class="row justify-content-md-center">
+                                <a class="btn btn-primary" th:href="@{/main.html}">返回首页</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="commons/commons::footer"></div>
+</div>
+<script th:src="@{js/backend-bundle.min.js}"></script>
+</body>
+</html>

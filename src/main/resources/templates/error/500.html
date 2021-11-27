@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>500 - 高铁订票系统</title>
+    <link rel="stylesheet" th:href="@{/css/backend.css}">
+    <style th:inline="css">
+        .wrapper{
+            background: url([[@{/image/bg.png}]]) fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="container">
+        <div class="row no-gutters height-self-center">
+            <div class="col-sm-12 text-center align-self-center">
+                <div class="iq-error position-relative">
+                    <img th:src="@{/image/error/500.png}"
+                         class="img-fluid iq-error-img" alt="">
+                    <h2 class="mb-0 mt-4">
+                        出错了！服务器出现问题
+                    </h2>
+                    <p th:text="${message}"></p>
+                    <a
+                            class="btn btn-primary d-inline-flex align-items-center mt-3" th:href="@{/main.html}">
+                        <i class="ri-home-4-line"></i>
+                        回到首页</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/backend-bundle.min.js}"></script>
+</body>
+</html>

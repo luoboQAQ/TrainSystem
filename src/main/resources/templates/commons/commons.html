@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!--导航栏-->
+<div class="iq-top-navbar" th:fragment="topbar">
+    <div class="iq-navbar-custom">
+        <nav class="navbar navbar-expand-lg navbar-light p-0">
+            <div class="navbar-breadcrumb">
+                <h2 class="ml-2">欢迎您，[[${session.userName}]]</h2>
+            </div>
+            <div class="nav-item">
+                <a class="btn btn-primary mt-2" th:href="@{/auth/loginout}">登出</a>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<!--侧边栏-->
+<div class="iq-sidebar sidebar-default" th:fragment="sidebar">
+    <div class="iq-sidebar-logo d-flex align-items-center">
+        <a href="#" class="header-logo">
+            <!--<img src="assets/images/logo.png" alt="logo" />-->
+            <h2 class="light-logo">高铁订票系统</h2>
+        </a>
+    </div>
+    <nav class="iq-sidebar-menu">
+        <ul id="iq-sidebar-toggle" class="iq-menu">
+            <li th:if="${session.role=='user'}">
+                <a href="#user" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                    <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                            width="20"
+                            height="20"
+                    >
+                        <path
+                                fill-rule="evenodd"
+                                d="M18 8a6 6 0 01-7.743 5.743L10 14l-1 1-1 1H6v2H2v-4l4.257-4.257A6 6 0 1118 8zm-6-4a1 1 0 100 2 2 2 0 012 2 1 1 0 102 0 4 4 0 00-4-4z"
+                                clip-rule="evenodd"
+                        />
+                    </svg>
+                    <span class="ml-3">票务页</span>
+                </a>
+                <ul id="user" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                    <li class="">
+                        <a th:href="@{/list}">
+                            <i class="las la-minus">
+                                -
+                            </i>
+                            <span>车次查询</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a th:href="@{/order}">
+                            <i class="las la-minus">
+                                -
+                            </i>
+                            <span>订单查询</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li th:if="${session.role=='admin'}">
+                <a
+                        href="#form"
+                        class="collapsed svg-icon"
+                        data-toggle="collapse"
+                        aria-expanded="false"
+                >
+                    <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                            width="20"
+                            height="20"
+                    >
+                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/>
+                        <path
+                                d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+                        />
+                    </svg>
+                    <span class="ml-3">管理页</span>
+                </a>
+                <ul
+                        id="form"
+                        class="iq-submenu collapse"
+                        data-parent="#iq-sidebar-toggle"
+                >
+                    <li class="">
+                        <a th:href="@{/admin/train}">
+                            <i class="las la-minus">
+                                -
+                            </i>
+                            <span>车次管理</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a th:href="@{/admin/sum}">
+                            <i class="las la-minus">
+                                -
+                            </i>
+                            <span>销售额查询</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<!--底栏-->
+<footer class="iq-footer" th:fragment="footer">
+    <div class="container-fluid row">
+        <div class="col-lg-12 text-right">
+            2021© By luoboQAQ
+        </div>
+    </div>
+</footer>
+</html>
