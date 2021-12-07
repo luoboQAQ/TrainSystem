@@ -109,6 +109,7 @@
              train
         WHERE train_id = train.id
           AND user_id = #{userId}
+        ORDER BY `order`.id
     </select>
 
     <select id="selectSumList" resultType="SumDTO">

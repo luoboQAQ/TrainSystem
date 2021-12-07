@@ -59,6 +59,10 @@ public class LoginController {
             model.addAttribute("msg", "两次密码输入的不一致");
             return "auth/sign-up";
         }
+        if(password.length()<6||password.length()>16){
+            model.addAttribute("msg", "密码长度不符合(6-16位)");
+            return "auth/sign-up";
+        }
         User user = userService.selectByName(username);
         if (user != null) {
             model.addAttribute("msg", "用户名已存在");
